@@ -1,19 +1,12 @@
 class Solution(object):
     def containsNearbyDuplicate(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: bool
-        """
-        n = len(nums)
         seen = {}
 
         for index, num in enumerate(nums):
-            if num in seen:
-                seen[num] = index
-                if abs(seen[num] - index) <= k:
-                    return True
+            if num in seen and index - seen[num] <= k:
+                return True
             seen[num] = index
+
         return False
 
 
